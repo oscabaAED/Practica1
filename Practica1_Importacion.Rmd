@@ -69,6 +69,11 @@ Usa siempre rutas referidas a la carpeta, en la que se encuentra el fichero fuen
 
 ```{r}
 fname <- 'data/DFP1_11122015 124700.csv'
+library(hms)
+f2_1 <- read.csv(fname, stringsAsFactors = F, sep = "\t")
+f2_1
+f2_1$HORA <- as_hms(f2_1$HORA)
+f2_1
 ```
 
 ## Inspección de los datos
