@@ -268,7 +268,7 @@ df
   * Limpia el data frame descartando las filas con `NA` en la primera columna (`IDENTIFICA`).
 
 ```{r}
-df2 <- df[which(sum(is.na(df[,"IDENTIFICA"])) < 1),]
+df2 <- df[!is.na(df[,"IDENTIFICA"]), ]
 df2
 # head, tail, str, summary
 ```
