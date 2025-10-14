@@ -75,7 +75,7 @@ library(readr)
 f2 <- read_delim("data/DFP1_11122015 124700.csv", 
     delim = "\t", escape_double = FALSE, 
     trim_ws = TRUE)
-View(DFP1_11122015_124700)
+#View(DFP1_11122015_124700)
 
 #2
 f2 <- read.csv(fname, stringsAsFactors = F, sep = "\t")
@@ -124,7 +124,7 @@ f3 <- read_csv("data/BreadBasket_DMS.csv",
     col_types = cols(Date = col_datetime(format = "%Y-%m-%d"), 
         Time = col_time(format = "%H:%M:%S"), 
         Transaction = col_integer()))
-View(BreadBasket_DMS)
+#View(BreadBasket_DMS)
 
 #3
 save(file="./data/BreadBasket.Rdata", list=c("f3"))
@@ -247,7 +247,7 @@ fname <- "data/ERCA.xlsx"
 
 # Usaremos la función read_excel de readxl
 df <- read_excel(fname, sheet=2) # El formato de las fechas no es correcto
-
+df
 # Columnas date: FECHA*
 # Columnas numeric: COL*, TG, HIDROF, ANTI*, DIURET, IECAS, PESO, TALLA?, HB,
 #                   IST, FERRITINA, UREA, FOSFORO, CALCIO, CICALCET, QUELANTES,
@@ -268,7 +268,8 @@ df <- read_excel(fname, sheet=2) # El formato de las fechas no es correcto
   * Limpia el data frame descartando las filas con `NA` en la primera columna (`IDENTIFICA`).
 
 ```{r}
-# Conviene limpiar primero un poco => eliminar is.na, etc.
+df2 <- df[which(sum(is.na(df[,"IDENTIFICA"])) < 1),]
+df2
 # head, tail, str, summary
 ```
 
@@ -279,6 +280,16 @@ df <- read_excel(fname, sheet=2) # El formato de las fechas no es correcto
 
 ```{r}
 filename <- "data/subjectInfo.xlsx"
+f7_1 <- read_excel(filename, sheet = 1)
+f7_2 <- read_excel(filename, sheet = 2)
+f7_3 <- read_excel(filename, sheet = 3)
+f7_4 <- read_excel(filename, sheet = 4)
+f7 <-
+sheets <- excel_sheets(filename)
+sheets
+for (n in sheets){
+  f7 <- list(f7[[n]])
+}
 ```
 
   1. Leer cada hoja (hasta 4) en data frames separados (`Hoja1`, `Hoja2`, ...) usando `read_excel` y el parámetro `sheet`.
