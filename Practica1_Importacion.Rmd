@@ -197,6 +197,12 @@ En R podemos importar ficheros JSON con la librería `jsonlite`. Las funciones m
 ```{r}
 library(jsonlite)
 filename <- 'data/FileCodificado.json'
+
+f5 <- read_json(filename, simplifyVector = T)
+f5
+f5_2 <- read_file(filename)
+fromJSON(f5_2)
+save(file="./data/FileCodificado.Rdata", list=c("f5"))
 ```
 
 ## Inspección de los datos
@@ -204,7 +210,10 @@ filename <- 'data/FileCodificado.json'
 Inspecciona los datos con `str`, `head`, `tail` y `summary`.
 
 ```{r}
-# str, head, tail, summary
+str(f5)
+head(f5)
+tail(f5)
+summary(f5)
 ```
 
 ## Extra: exportar datos en formato JSON
