@@ -95,7 +95,6 @@ save(file="./data/DFP1.RData", list=c("f2_2"))
 Inspecciona los datos con `str`, `head`, `tail` y `summary`.
 
 ```{r}
-# str, head, tail, summary
 str(f2_2)
 head(f2_2)
 tail(f2_2)
@@ -118,6 +117,18 @@ Otra opción es usar la librería `readr` para especificar directamente el tipo 
 ```{r}
 library(readr)
 filename <- "data/BreadBasket_DMS.csv"
+
+#1+2
+library(readr)
+f3 <- read_csv("data/BreadBasket_DMS.csv", 
+    col_types = cols(Date = col_datetime(format = "%Y-%m-%d"), 
+        Time = col_time(format = "%H:%M:%S"), 
+        Transaction = col_integer()))
+View(BreadBasket_DMS)
+
+#3
+save(file="./data/BreadBasket.Rdata", list=c("f3"))
+
 ```
 
 ## Inspección de los datos
@@ -125,7 +136,10 @@ filename <- "data/BreadBasket_DMS.csv"
 Inspecciona los datos con `str`, `head`, `tail` y `summary`.
 
 ```{r}
-# dim, str, ...
+str(f3)
+head(f3)
+tail(f3)
+summary(f3)
 ```
 
 
