@@ -70,13 +70,22 @@ Usa siempre rutas referidas a la carpeta, en la que se encuentra el fichero fuen
 ```{r}
 fname <- 'data/DFP1_11122015 124700.csv'
 library(hms)
+#1
+library(readr)
+f2 <- read_delim("data/DFP1_11122015 124700.csv", 
+    delim = "\t", escape_double = FALSE, 
+    trim_ws = TRUE)
+View(DFP1_11122015_124700)
 
+#2
 f2 <- read.csv(fname, stringsAsFactors = F, sep = "\t")
-f2
 
-# Modificamos columna de HORA y FECHA
-f2$HORA <- as_hms(f2$HORA)
-f2$FECHA <- as.POSIXlt(f2$FECHA, format = "%d/%m/%Y") # no funciona bien
+#3
+f2_2 <- f2
+
+f2_2$HORA <- as_hms(f2_2$HORA)
+f2_2$FECHA <- as.POSIXlt(f2_2$FECHA, format = "%d/%m/%Y")
+
 ```
 
 ## Inspección de los datos
@@ -85,10 +94,10 @@ Inspecciona los datos con `str`, `head`, `tail` y `summary`.
 
 ```{r}
 # str, head, tail, summary
-str(f2)
-head(f2)
-tail(f2)
-summary(f2)
+str(f2_2)
+head(f2_2)
+tail(f2_2)
+summary(f2_2)
 ```
 
 
