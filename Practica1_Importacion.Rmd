@@ -86,6 +86,8 @@ f2_2 <- f2
 f2_2$HORA <- as_hms(f2_2$HORA)
 f2_2$FECHA <- as.POSIXlt(f2_2$FECHA, format = "%d/%m/%Y")
 
+#4
+save(file="./data/DFP1.RData", list=c("f2_2"))
 ```
 
 ## Inspección de los datos
