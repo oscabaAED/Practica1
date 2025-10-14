@@ -156,6 +156,9 @@ Podemos leer ficheros de IBM SPSS mediante la librería `haven`.
 ```{r}
 library(haven)
 filename <- "data/PsychBike.sav"
+
+f4 <- read_sav(filename)
+save(file="./data/PsychBike.Rdata", list=c("f4"))
 ```
 
 ## Inspección de los datos
@@ -163,7 +166,10 @@ filename <- "data/PsychBike.sav"
 Inspecciona los datos con `str`, `head`, `tail` y `summary`.
 
 ```{r}
-# dim, str, etc.
+str(f4)
+head(f4)
+tail(f4)
+summary(f4)
 ```
 
 
