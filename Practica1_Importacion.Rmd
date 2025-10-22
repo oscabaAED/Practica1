@@ -308,12 +308,22 @@ f7_2 <- read_excel(filename, sheet = 2)
 f7_3 <- read_excel(filename, sheet = 3)
 f7_4 <- read_excel(filename, sheet = 4)
 
+#2
 sheets <- excel_sheets(filename)
-sheets
+print(sheets)
+
+df <- list()
 for (n in sheets){
-  f7 <- list(f7[[n]])
+  df[[n]] <- read_excel(filename, sheet = n)
 }
-# save()
+
+#3
+x <- lapply(sheets, function(x) read_excel(filename, sheet = x))
+
+names(x) <- sheets
+
+#4
+save(file="./data/subjectInfo.Rdata", list=c("df"))
 ```
 
 ## Inspección de los datos
@@ -321,5 +331,8 @@ for (n in sheets){
 Inspecciona los datos con `str` (jugar con `max.level`), `head`, `tail` y `summary`.
 
 ```{r}
-# str, head, tail, summary
+str(df, max.level = 2)
+head(df)
+tail(df)
+summary(df)
 ```
